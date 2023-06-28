@@ -1,6 +1,7 @@
 package models;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -11,8 +12,12 @@ import java.time.Duration;
 import java.util.List;
 
 public class Form {
+
+
+
     private WebDriver driver;
     private WebDriverWait wait;
+
 
     public Form(WebDriver driver) {
         this.driver = driver;
@@ -26,7 +31,7 @@ public class Form {
         driver.findElement(By.id("email")).sendKeys(mail);
     }
 
-    public void selectState(String stateoption) {
+    public void selectState(String stateOption) {
         wait=new WebDriverWait(driver, Duration.ofSeconds(10));
 
 
@@ -43,13 +48,14 @@ public class Form {
 
         for (WebElement state : states) {
             System.out.println(state);
-            if (state.getText().equals(stateoption)) {
+            if (state.getText().equals(stateOption)) {
                 state.click();
-                break;
+                return;
             }
             //  throw new Exception("No such State")
 
         }
+        throw new NotFoundException("could not find "+ stateOption);
 
     }
 

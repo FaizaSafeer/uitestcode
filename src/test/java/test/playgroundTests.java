@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -102,6 +101,25 @@ public class playgroundTests {
         wait.until(ExpectedConditions.visibilityOfElementLocated(welcomeBy));
 
         Assertions.assertEquals("Thanks for your feedback Faiza", driver.findElement(welcomeBy).getText());
+
+
+    }
+
+    @Test
+    public void explorePlanet() throws InterruptedException {
+        new Toolbar(driver).clickPlanets();
+
+        ////h2[@class='name headline primary--text']
+        List<WebElement> allPlanets=driver.findElements(By.cssSelector(".planet+h2"));
+
+        for (WebElement planet:allPlanets) {
+             if(planet.getText().equalsIgnoreCase("Earth")){
+                 Thread.sleep(2000);
+                 planet.click();
+             }
+
+        }
+
 
 
     }
