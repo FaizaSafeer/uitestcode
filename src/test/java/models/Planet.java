@@ -18,4 +18,15 @@ public class Planet {
         planetElement.findElement(By.tagName("button")).click();
 
     }
+
+
+    public long getDistance(){
+
+
+        var DisString=planetElement.findElement(By.className("distance")).getText();
+        return Long.parseLong(DisString.replaceAll("^//d",""));
+
+
+
+    }
 }

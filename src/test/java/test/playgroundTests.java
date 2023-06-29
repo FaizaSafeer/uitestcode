@@ -112,7 +112,9 @@ public class playgroundTests {
         new Toolbar(driver).clickPlanets();
 
 
-      new PlanetPage(driver).getPlanet("mercury").clickExplore();
+   //   new PlanetPage(driver).getPlanet("mercury").clickExplore();
+      new PlanetPage(driver).getPlanet(planet -> planet.getName().equalsIgnoreCase("mercury")).clickExplore();
+      new PlanetPage(driver).getPlanet(x -> x.getName().equalsIgnoreCase("earth")).clickExplore();
 
 
      // Assertions.assertEquals("Exploring Mercury",);

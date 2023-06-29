@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class PlanetPage {
         private WebDriver driver;
@@ -27,10 +28,10 @@ public class PlanetPage {
         }
 
 
-        public Planet getPlanet(String PlanetName) throws Exception {
+        public Planet getPlanet(Predicate<Planet> planetPredicate) throws Exception {
                 for (WebElement planetElement : getPlanets()) {
                         Planet onePlanet = new Planet(planetElement);
-                        if (onePlanet.getName().equalsIgnoreCase(PlanetName))
+                        if (planetPredicate.test(onePlanet))
                                 return onePlanet;
 
 
