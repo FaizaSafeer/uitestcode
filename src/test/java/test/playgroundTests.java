@@ -1,6 +1,8 @@
 package test;
 
 import models.Form;
+import models.Planet;
+import models.PlanetPage;
 import models.Toolbar;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -106,23 +108,36 @@ public class playgroundTests {
     }
 
     @Test
-    public void explorePlanet() throws InterruptedException {
+    public void explorePlanetTest() throws Exception {
         new Toolbar(driver).clickPlanets();
 
-        ////h2[@class='name headline primary--text']
-        List<WebElement> allPlanets=driver.findElements(By.cssSelector(".planet+h2"));
 
-        for (WebElement planet:allPlanets) {
-             if(planet.getText().equalsIgnoreCase("Earth")){
-                 Thread.sleep(2000);
-                 planet.click();
-             }
+      new PlanetPage(driver).getPlanet("mercury").clickExplore();
+
+
+     // Assertions.assertEquals("Exploring Mercury",);
+
+
+
+
+
+
+//      //  List<WebElement> planetElement=driver.findElements(By.className("planet"));
+//
+//        for (WebElement planet:planetElement) {
+//            Planet planet1=new Planet(planet);
+//            if(planet1.getName().equalsIgnoreCase("Earth")){
+//                planet1.clickExplore();
+//            }
 
         }
 
 
 
-    }
+
+
+
+
 
 
     @AfterEach
